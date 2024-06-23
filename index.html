@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>注册</h1>
+        <form id="registerForm">
+            <input type="text" placeholder="用户名" id="username" required>
+            <input type="password" placeholder="密码" id="password" required>
+            <input type="password" placeholder="确认密码" id="confirmPassword" required>
+            <button type="submit">注册</button>
+        </form>
+        <p id="registerMessage"></p>
+        <p>已有账号？<a href="login.html">点击登录</a></p>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (password === confirmPassword) {
+                localStorage.setItem(username, password);
+                document.getElementById('registerMessage').innerHTML = "注册成功！";
+                document.getElementById('registerMessage').style.color = "green";
+                document.getElementById('registerForm').reset();
+                setTimeout(function() {
+                    window.location.href = 'login.html'; // 注册成功后延迟跳转到登录页面
+                }, 2000); // 2秒后跳转
+            } else {
+                document.getElementById('registerMessage').innerHTML = "密码和确认密码不匹配，请重新输入！";
+                document.getElementById('registerMessage').style.color = "red";
+            }
+        });
+    </script>
+</body>
+
+</html>
