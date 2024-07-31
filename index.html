@@ -9,6 +9,61 @@
     <meta name="description" content="曾鸡样的分享页，快来看看吧!">
     <link rel="shortcut icon" href="/favicon.ico">
     <style type="text/css">
+    /* 基础样式 */
+#color-selector {
+  font-family: Arial, sans-serif; /* 字体 */
+  margin: 20px auto; /* 居中并添加外边距 */
+  text-align: center;
+}
+
+/* 按钮样式 */
+#changeColorButton {
+  padding: 10px 20px; /* 内边距 */
+  font-size: 16px; /* 字体大小 */
+  color: #fff; /* 文字颜色 */
+  background-color: #007bff; /* 背景颜色 */
+  border: none; /* 无边框 */
+  border-radius: 5px; /* 圆角 */
+  cursor: pointer; /* 鼠标悬停时显示手形图标 */
+  transition: background-color 0.3s; /* 背景颜色变化的过渡效果 */
+}
+
+#changeColorButton:hover {
+  background-color: #0056b3; /* 鼠标悬停时的背景颜色 */
+}
+
+/* 下拉菜单样式 */
+#colorOptions {
+  padding: 10px 15px; /* 内边距 */
+  margin-top: 10px; /* 菜单与按钮之间的间距 */
+  font-size: 16px; /* 字体大小 */
+  color: #333; /* 文字颜色 */
+  background: #f8f8f8; /* 背景色 */
+  border: 1px solid #ddd; /* 边框 */
+  border-radius: 5px; /* 圆角 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 轻微的投影效果 */
+  appearance: none; /* 移除默认的样式 */
+  -webkit-appearance: none; /* 针对WebKit浏览器 */
+  -moz-appearance: none; /* 针对Firefox */
+}
+
+/* 自定义图片上传按钮样式 */
+#customImageInput {
+  display: none; /* 默认隐藏 */
+}
+
+/* 选项样式 */
+#colorOptions option {
+  padding: 5px; /* 选项内边距 */
+  background-color: #fff; /* 选项背景色 */
+  border-bottom: 1px solid #eee; /* 选项底部边框 */
+}
+
+/* 选项悬停效果 */
+#colorOptions option:hover {
+  background-color: #e9ecef; /* 悬停时的背景色 */
+}
+    #color-selector {  margin: 20px; text-align: center}
       *{padding:0;margin:0}
       body{background-color:#00c250;color:#fff;font-family:-apple-system,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Microsoft YaHei,Source Han Sans SC,Noto Sans CJK SC,WenQuanYi Micro Hei,sans-serif}
       #main{margin:10px auto;display:flex;justify-content:center;flex-direction:column;align-items:center}
@@ -41,6 +96,66 @@
     </style>
   </head>
   <body>
+  
+<div id="color-selector">
+  <button id="changeColorButton">更换背景颜色</button>
+  <div id="colorOptionsContainer">
+    <select id="colorOptions">
+      <option value="default">默认颜色</option>
+      <option value="#FFBA00">颜色1</option>
+      <option value="#0080ff">颜色2</option>
+      <option value="#6AFFBE">颜色3</option>
+      <option value="custom">自定义图片</option>
+    </select>
+  </div>
+  <input type="file" id="customImageInput" style="display:none" accept="image/*">
+</div>
+  </select>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var colorSelect = document.getElementById('colorOptions');
+  var changeColorButton = document.getElementById('changeColorButton');
+  var customImageInput = document.getElementById('customImageInput');
+  var bodyElement = document.body; // 缓存body元素以提高性能
+
+  // 重置背景颜色的函数
+  function resetBackground() {
+    bodyElement.style.backgroundColor = ''; // 清除背景颜色
+    bodyElement.style.backgroundImage = 'none'; // 清除背景图片
+  }
+
+  colorSelect.addEventListener('change', function() {
+    var selectedColor = this.value;
+    if (selectedColor === 'custom') {
+      customImageInput.click(); // 触发自定义图片选择
+    } else if (selectedColor === 'default') {
+      resetBackground(); // 重置为默认背景
+    } else {
+      // 设置背景颜色并清除背景图片
+      bodyElement.style.backgroundColor = selectedColor;
+      bodyElement.style.backgroundImage = 'none';
+    }
+  });
+
+  changeColorButton.addEventListener('click', function() {
+    colorSelect.style.display = colorSelect.style.display === 'none' ? 'block' : 'none';
+  });
+
+  customImageInput.addEventListener('change', function(event) {
+    var reader = new FileReader();
+    reader.onload = function(event) {
+      // 设置背景图片，并确保背景颜色为透明
+      bodyElement.style.backgroundImage = 'url(' + event.target.result + ')';
+      bodyElement.style.backgroundColor = 'transparent';
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  });
+});
+</script>
+<!-- 用于上传图片的input，可以放在页面的任何位置，但默认隐藏 -->
+<input type="file" id="customImageInput" style="display:none" accept="image/*">
+</header>
     <div id="main">
       <div class="brand" id="logo">
         <span>风羽搜集站 | 曾鸡样的网站
