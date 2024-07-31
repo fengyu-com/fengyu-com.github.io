@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>kdasrc网</title>
+    <style>
+        body, html {
+            width:100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: transparent;
+        }
+
+        .red-container {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            margin: 0;
+            padding: 0;
+        }
+        .red-box {
+            width: 100%;
+            height: 280px;
+            color: white;
+            border-radius: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            box-shadow: none;
+            transition: transform 0.3s ease;
+            text-align: left;
+            cursor: pointer;
+            padding: 20px;
+            margin-bottom: -1px; /* 消除盒子间的缝隙 */
+            border: 1px solid transparent; /* 添加透明边框 */
+        }
+        .red-box h1 {
+            margin: 0 0 5px;
+            font-size: 30px;
+            font-weight: bold;
+        }
+        .red-box h2 {
+            margin: 0;
+            font-size: 18px;
+        }
+        /* 为每个框添加不同的背景颜色 */
+        .red-box:nth-child(1) { background-color: #B01A4E; }
+        .red-box:nth-child(2) { background-color: #FF813C; }
+        .red-box:nth-child(3) { background-color: #FFB800; }
+        .red-box:nth-child(4) { background-color: #37AE76; }
+        .red-box:nth-child(5) { background-color: #3586B0; }
+        /* 鼠标悬浮时放大效果 */
+        .red-box:hover {
+            transform: scale(1.05);
+            z-index: 1; /* 确保放大的盒子在顶部 */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 头部 -->
+    <div class="header">
+        <h1>首页</h1>
+    </div>
+
+    <div class="red-container">
+        <!-- 五个彩色长方形框，垂直紧密排列 -->
+        <div class="red-box" onclick="window.location.href='#';">
+            <h1>框1标题</h1>
+            <h2>这里是小标题</h2>
+        </div>
+        <div class="red-box" onclick="window.location.href='#';">
+            <h1>框2标题</h1>
+            <h2>这里是小标题</h2>
+        </div>
+        <div class="red-box" onclick="window.location.href='#';">
+            <h1>框3标题</h1>
+            <h2>这里是小标题</h2>
+        </div>
+        <div class="red-box" onclick="window.location.href='#';">
+            <h1>框4标题</h1>
+            <h2>这里是小标题</h2>
+        </div>
+        <div class="red-box" onclick="window.location.href='#';">
+            <h1>框5标题</h1>
+            <h2>这里是小标题</h2>
+        </div>
+    </div>
+</body>
+</html>
