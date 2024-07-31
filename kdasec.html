@@ -4,6 +4,43 @@
     <meta charset="UTF-8">
     <title>⚠️该网页被多用户收藏，请谨慎珍惜！</title>
     <style>
+    /* 定义一个同时向上滑动和淡入的动画 */
+@keyframes slideUpFadeIn {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+    visibility: hidden; /* 初始状态隐藏，不影响布局 */
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible; /* 动画结束时变为可见 */
+  }
+}
+
+/* 所有红色框的公共动画样式 */
+.red-box {
+  animation: slideUpFadeIn 1s ease-in-out;
+  animation-fill-mode: forwards; /* 动画完成后保持最后一帧 */
+  visibility: hidden; /* 初始状态隐藏 */
+}
+
+/* 设置每个红色框的动画延迟，使它们依次快速开始 */
+.red-box:nth-child(1) {
+  animation-delay: 0s; /* 第一个框立即开始 */
+}
+.red-box:nth-child(2) {
+  animation-delay: 0.2s; /* 第二个框在第一个框动画开始x秒后开始 */
+}
+.red-box:nth-child(3) {
+  animation-delay: 0.4s; /* 第三个框在第二个框动画开始x秒后开始 */
+}
+.red-box:nth-child(4) {
+  animation-delay: 0.6s; /* 第四个框在第三个框动画开始x秒后开始 */
+}
+.red-box:nth-child(5) {
+  animation-delay: 0.8s; /* 第五个框在第四个框动画开始x秒后开始 */
+}
         body, html {
             width:100%;
             height: 100%;
@@ -85,7 +122,7 @@
 
     <div class="red-container">
         <!-- 五个彩色长方形框，垂直紧密排列 -->
-    <div class="red-box" onclick="window.location.href='#';" style="cursor: pointer;">
+    <div class="red-box" onclick="window.location.href='ww.html';" style="cursor: pointer;">
   <h1 style="font-size: 70px; text-align: justify; margin-left: 60px;">框1标题</h1>
   <h2 style="font-size: 30px; text-align: justify; margin-left: 60px;">这里是小标题</h2>
 </div>
