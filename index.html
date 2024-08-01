@@ -97,69 +97,14 @@
   </head>
   <body>
   
-<div id="color-selector">
-  <button id="changeColorButton">更换背景颜色</button>
-  <div id="colorOptionsContainer">
-    <select id="colorOptions">
-      <option value="default">默认颜色</option>
-      <option value="#FFBA00">颜色1</option>
-      <option value="#0080ff">颜色2</option>
-      <option value="#6AFFBE">颜色3</option>
-      <option value="custom">自定义图片</option>
-    </select>
-  </div>
-  <input type="file" id="customImageInput" style="display:none" accept="image/*">
-</div>
-  </select>
-</div>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  var colorSelect = document.getElementById('colorOptions');
-  var changeColorButton = document.getElementById('changeColorButton');
-  var customImageInput = document.getElementById('customImageInput');
-  var bodyElement = document.body; // 缓存body元素以提高性能
-
-  // 重置背景颜色的函数
-  function resetBackground() {
-    bodyElement.style.backgroundColor = ''; // 清除背景颜色
-    bodyElement.style.backgroundImage = 'none'; // 清除背景图片
-  }
-
-  colorSelect.addEventListener('change', function() {
-    var selectedColor = this.value;
-    if (selectedColor === 'custom') {
-      customImageInput.click(); // 触发自定义图片选择
-    } else if (selectedColor === 'default') {
-      resetBackground(); // 重置为默认背景
-    } else {
-      // 设置背景颜色并清除背景图片
-      bodyElement.style.backgroundColor = selectedColor;
-      bodyElement.style.backgroundImage = 'none';
-    }
-  });
-
-  changeColorButton.addEventListener('click', function() {
-    colorSelect.style.display = colorSelect.style.display === 'none' ? 'block' : 'none';
-  });
-
-  customImageInput.addEventListener('change', function(event) {
-    var reader = new FileReader();
-    reader.onload = function(event) {
-      // 设置背景图片，并确保背景颜色为透明
-      bodyElement.style.backgroundImage = 'url(' + event.target.result + ')';
-      bodyElement.style.backgroundColor = 'transparent';
-    };
-    reader.readAsDataURL(event.target.files[0]);
-  });
-});
-</script>
+<
 <!-- 用于上传图片的input，可以放在页面的任何位置，但默认隐藏 -->
 <input type="file" id="customImageInput" style="display:none" accept="image/*">
 </header>
     <div id="main">
       <div class="brand" id="logo">
-        <span>风羽搜集站 | 曾鸡样的网站
-        </span><span class="flag">分享发布页</span>
+        <span> 曾鸡样的网站
+        </span><span class="flag">发布页Pro</span>
       </div>
       <div class="field">
         <div class="enter-maomi">
