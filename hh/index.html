@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>风羽加固</title>
+    <style>
+      body{
+        text-align:center;
+      }
+      body>p{
+        background-color:skyblue;
+        border-radius:5vw;
+        padding-bottom:1vh;
+        padding-top:1vh;
+        text-align:center;
+      }
+      textarea{
+        width:80vw;
+        word-break:break-all;
+        border:solid gray;
+        border-radius:5vw;
+        box-shadow:0 0 5px 1px lightgray inset;
+        padding:2.5vw;
+        text-align:center;
+      }
+      button{
+        border:solid red 1vw;
+        border-radius:5vw;
+        background-color:skyblue;
+        padding:5vw;
+        margin:5vw;
+        transition:all .25s;
+      }
+      button:active{
+        background-color:blue;
+      }
+    </style>
+  </head>
+  <body>	
+  <p>提示:由来自webcat的htqw～提供<br>快和你的好朋友聊天"加密"吧！--风羽官方</p>
+    <dialog id="dg">
+      <h1>文字加密工具2.0来袭啦!网站已更新，快来体验吧<br>--风羽官方</h1>
+      <button onclick="dg.close();">关闭</button>
+    </dialog>
+    <p>输入:<textarea type="text"></textarea></p>
+    <p>结果:<span><textarea></textarea></span></p>
+    <button onclick="document.querySelector('span>textarea').innerHTML=加密(document.querySelector('p>textarea').value)">加密</button>
+    <button onclick="document.querySelector('span>textarea').innerHTML=解密(document.querySelector('p>textarea').value)">解密</button>
+  </body>
+  <script src="script.js"></script>
+</html>
