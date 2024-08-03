@@ -1,0 +1,100 @@
+<head>
+    <meta charset="utf-8">
+    <title>蓝白图床| 基于github免费在线图床 - </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
+    <link rel="icon" href="https://q1.qlogo.cn/g?b=qq&nk=448776129&s=640">
+    <style>
+        body {
+            background-color: rgb(219, 228, 228);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <p style="text-align: center;">蓝白图床| github免费在线无损图床</p>
+        <div id="links" style="width: 100%; height: 50px; margin-top: 20px;">
+            <a style="text-align: center; display: block; font-size: 30px; cursor: pointer" onclick="myimg.click()">
+                👆🏻
+            </a>
+        </div>
+    </div>
+
+    <br>
+
+    <center>
+        <font size="4" color="#7FFFD4" face="Helvetica">
+            <h3>确定图片后稍等，因为图片正在上传。</h3><textarea name="" id="neirong" cols="42" rows="7"></textarea>
+        </font>
+    </center>
+
+    <input style="visibility: hidden;" class="btn btn-primary" type="file" id="myimg" onchange="imgChange(this)"
+        accept="image/png,image/gif,image/jpeg">
+
+    <div>
+        <div class="img111" style="height: 25px;width: 60%;margin: 0 auto ; display: none; ">
+            <img src="https://img2.lbcolor.cn/https://raw.githubusercontent.com/448776129/imghub/main/img/1689832188521.gif"
+                alt="" width="100%">
+        </div>
+    </div>
+    </div>
+    <footer>
+        <p style="text-align: center;"><a href="www.ballyun.cn">领取免费虚拟主机</a></p>
+    </footer>
+    <script src="https://lib.baomitu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://wmcreksu.us1.host.ballyun.cn/img.js"></script>
+    <script>
+        function imgChange(img) {
+            const reader = new FileReader();
+            reader.onload = function (ev) {
+                var imgFile = ev.target.result; //imgFile就是图片的base64编码
+                console.log(imgFile);
+
+                base64url = imgFile.replace(/(.*)?,/, ''); //用正则消除前面的data之类的字符
+                form = imgFile.substring(imgFile.indexOf("/") + 1, imgFile.indexOf(";")); //获取图片原本的格式
+                console.log(imgFile);
+                uploadimg(base64url, form); //上传
+            }
+            reader.readAsDataURL(img.files[0]);
+        }
+
+        // ----------------------------
+
+        function uploadimg(file, form) {
+            // alert(4)
+            let timestamp = new Date().getTime(); //获取时间戳
+            let newname = "https://raw.githubusercontent.com/你的用户名/仓库名/目录(留空代表根目录)/" + timestamp + "." + form; //以事件戳重命名
+            console.log(newname);
+            $.ajax({
+                url: "https://api.github.com/repos/你的用户名/仓库名/目录(留空代表根目录)/" + timestamp + "." + form,
+                method: "PUT",
+                headers: {
+                    "Authorization": "密钥,在github的个人 左侧的申请",
+                    "Content-Type": "text/plain"
+                },
+                data: "{\r\n \"message\": \"upload\",\r\n \"content\": \"" + file + "\"\r\n}",
+                success: function () {
+                    console.log(111);
+                    $("#neirong").html("github:" + newname) //写到html里面
+                }
+            })
+        }
+
+        //按键触发 
+        document.onkeydown = function () {
+            //禁止 ctrl+u
+            if (event.ctrlKey && window.event.keyCode == 85) {
+                return false;
+            }
+            //禁止 F12
+            if (window.event && window.event.keyCode == 123) {
+                event.keyCode = 0;
+                event.returnValue = false;
+            }
+        }
+    </script>
+
+</body>
+
+</html>
